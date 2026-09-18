@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>berrypayloads</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: #0b0b0d;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    /* HEADER */
+
+    header {
+      padding: 45px 20px 25px;
+    }
+
+    .logo {
+      font-size: 38px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: #8c8c94;
+      font-size: 15px;
+    }
+
+    .firmware {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 7px 14px;
+      border-radius: 20px;
+      background: #1b1b20;
+      color: #bdbdc5;
+      font-size: 13px;
+    }
+
+    /* MAIN */
+
+    main {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      padding: 10px 20px 50px;
+    }
+
+    /* STATUS */
+
+    #status {
+      min-height: 46px;
+      margin: 10px 0 30px;
+      padding: 14px 18px;
+
+      border: 1px solid #24242a;
+      border-radius: 10px;
+
+      background: #121216;
+      color: #9999a2;
+
+      font-size: 14px;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-title {
+      margin-bottom: 14px;
+
+      font-size: 19px;
+      font-weight: bold;
+
+      text-align: left;
+      color: #eeeeef;
+    }
+
+    .section-description {
+      margin-top: -7px;
+      margin-bottom: 15px;
+
+      text-align: left;
+
+      color: #777780;
+      font-size: 13px;
+    }
+
+    /* BUTTON GRID */
+
+    .buttons {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(190px, 1fr));
+
+      gap: 12px;
+    }
+
+    /* BUTTONS */
+
+    button {
+      width: 100%;
+      min-height: 58px;
+
+      border: 1px solid #29292f;
+      border-radius: 9px;
+
+      background: #17171b;
+      color: #ffffff;
+
+      font-size: 15px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    button:hover {
+      background: #202026;
+      border-color: #3a3a43;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* SPECIAL BUTTON */
+
+    .primary {
+      background: #222229;
+      border-color: #45454e;
+    }
+
+    .primary:hover {
+      background: #292930;
+    }
+
+    /* DIVIDER */
+
+    .divider {
+      height: 1px;
+      margin: 35px 0;
+
+      background: #24242a;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 20px;
+
+      color: #55555d;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      header {
+        padding-top: 30px;
+      }
+
+      .logo {
+        font-size: 29px;
+      }
+
+      main {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+      PS4 PAYLOAD HOST
+    </div>
+
+    <div class="subtitle">
+      Homebrew &amp; Payload Menu
+    </div>
+
+    <div class="firmware">
+      Firmware 11.00
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+    <!-- STATUS -->
+
+    <div id="status">
+      Ready. Select a payload.
+    </div>
+
+
+    <!-- SYSTEM PAYLOADS -->
+
+    <section class="section">
+
+      <div class="section-title">
+        System
+      </div>
+
+      <div class="section-description">
+        Homebrew and debugging payloads.
+      </div>
+
+      <div class="buttons">
+
+        <button
+          class="primary"
+          onclick="loadPayload('payloads/goldhen.bin')">
+
+          GoldHEN
+
+        </button>
+
+
+        <button
+          onclick="loadPayload('payloads/ps4debug.bin')">
+
+          PS4Debug
+
+        </button>
+
+
+        <button
+          onclick="loadPayload('payloads/ftp.bin')">
+
+          FTP
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- BO3 -->
+
+    <section class="section">
+
+      <div class="section-title">
+        Call of Duty: Black Ops III
+      </div>
+
+      <div class="section-description">
+        BO3 single-player / homebrew payloads.
+      </div>
+
+      <div class="buttons">
+
+        <button
+          onclick="loadPayload('payloads/bo3.bin')">
+
+          BO3 Menu
+
+        </button>
+
+
+        <button
+          onclick="loadPayload('payloads/bo3-debug.bin')">
+
+          BO3 Debug
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- BO4 -->
+
+    <section class="section">
+
+      <div class="section-title">
+        Call of Duty: Black Ops 4
+      </div>
+
+      <div class="section-description">
+        BO4 single-player / homebrew payloads.
+      </div>
+
+      <div class="buttons">
+
+        <button
+          onclick="loadPayload('payloads/bo4.bin')">
+
+          BO4 Menu
+
+        </button>
+
+
+        <button
+          onclick="loadPayload('payloads/bo4-debug.bin')">
+
+          BO4 Debug
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- OTHER PAYLOADS -->
+
+    <section class="section">
+
+      <div class="section-title">
+        Other Payloads
+      </div>
+
+      <div class="section-description">
+        Additional payload files.
+      </div>
+
+      <div class="buttons">
+
+        <button
+          onclick="loadPayload('payloads/app2usb.bin')">
+
+          App2USB
+
+        </button>
+
+
+        <button
+          onclick="loadPayload('payloads/cacheinstall.bin')">
+
+          Cache Install
+
+        </button>
+
+
+        <button
+          onclick="loadPayload('payloads/dumper.bin')">
+
+          Dumper
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    PS4 11.00 Payload Host<br>
+
+    Payload files are loaded from the local
+    <strong>payloads/</strong> directory.
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /*
+     * ==========================================
+     * PAYLOAD LOADER
+     * ==========================================
+     *
+     * GitHub Pages can host the .bin files,
+     * but it cannot itself execute PS4 payloads.
+     *
+     * This function fetches the selected binary.
+     *
+     * The PS4 exploit/payload transport that
+     * actually sends the binary to the console
+     * needs to be supplied by the exploit host
+     * you are using.
+     */
+
+    async function loadPayload(file) {
+
+      const status =
+        document.getElementById("status");
+
+
+      status.textContent =
+        "Loading " + file + "...";
+
+
+      try {
+
+        const response =
+          await fetch(file);
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Payload not found (" +
+            response.status +
+            ")"
+          );
+
+        }
+
+
+        const buffer =
+          await response.arrayBuffer();
+
+
+        const size =
+          buffer.byteLength;
+
+
+        console.log(
+          "Payload:",
+          file
+        );
+
+
+        console.log(
+          "Size:",
+          size,
+          "bytes"
+        );
+
+
+        status.textContent =
+          "Loaded " +
+          file +
+          " — " +
+          size +
+          " bytes.";
+
+
+        /*
+         * ======================================
+         * PAYLOAD TRANSPORT GOES HERE
+         * ======================================
+         *
+         * The exploit host you use will normally
+         * provide a function for sending the
+         * ArrayBuffer to the PS4.
+         *
+         * For example, conceptually:
+         *
+         *     sendPayload(buffer);
+         *
+         * Do not add a random payload-sending
+         * function here; it must match the
+         * exploit implementation.
+         */
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        status.textContent =
+          "Error: " +
+          error.message;
+
+      }
+
+    }
+
+
+    /*
+     * ==========================================
+     * OPTIONAL: TEST PAYLOAD FILE
+     * ==========================================
+     *
+     * You can check whether a payload exists
+     * without attempting to send it.
+     */
+
+    async function checkPayload(file) {
+
+      try {
+
+        const response =
+          await fetch(file, {
+            method: "HEAD"
+          });
+
+
+        return response.ok;
+
+      } catch {
+
+        return false;
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
