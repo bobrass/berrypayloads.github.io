@@ -1,556 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>berrypayloads</title>
+<title>PS4 11.00 Mod Menus</title>
 
-  <style>
+<style>
     * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
+    html, body {
+        margin: 0;
+        min-height: 100%;
     }
 
     body {
-      background: #0b0b0d;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
+        min-height: 100vh;
+        background:
+            radial-gradient(
+                circle at 50% 20%,
+                rgba(0, 90, 190, 0.22),
+                transparent 45%
+            ),
+            #0b0d14;
+
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+
+        display: flex;
+        flex-direction: column;
     }
 
-    /* HEADER */
+    /* Background waves */
+
+    .wave {
+        position: fixed;
+        z-index: -1;
+
+        width: 140%;
+        height: 180px;
+
+        left: -20%;
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 80, 220, 0.13),
+            transparent
+        );
+
+        border-top: 1px solid rgba(0, 120, 255, 0.25);
+
+        transform: rotate(-7deg);
+    }
+
+    .wave.one {
+        top: 180px;
+    }
+
+    .wave.two {
+        top: 500px;
+        transform: rotate(7deg);
+    }
+
+    /* Header */
 
     header {
-      padding: 45px 20px 25px;
+        padding: 35px 20px 20px;
+        text-align: center;
     }
 
-    .logo {
-      font-size: 38px;
-      font-weight: bold;
-      letter-spacing: 2px;
+    .ps4 {
+        position: absolute;
+        left: 35px;
+        top: 30px;
+
+        font-size: 30px;
+        letter-spacing: 4px;
+        font-weight: 300;
+    }
+
+    h1 {
+        margin: 0;
+
+        font-size: 30px;
+        font-weight: 500;
     }
 
     .subtitle {
-      margin-top: 8px;
-      color: #8c8c94;
-      font-size: 15px;
+        margin-top: 10px;
+
+        color: #75baff;
+        font-size: 17px;
     }
 
-    .firmware {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 7px 14px;
-      border-radius: 20px;
-      background: #1b1b20;
-      color: #bdbdc5;
-      font-size: 13px;
+    .line {
+        width: 450px;
+        max-width: 80%;
+
+        height: 2px;
+
+        margin: 15px auto;
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            #008cff,
+            white,
+            #008cff,
+            transparent
+        );
+
+        box-shadow: 0 0 12px #008cff;
     }
 
-    /* MAIN */
+    /* Main */
 
     main {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      padding: 10px 20px 50px;
+        flex: 1;
+
+        width: 100%;
+        max-width: 850px;
+
+        margin: auto;
+
+        padding: 20px;
     }
 
-    /* STATUS */
+    .status-title {
+        text-align: center;
+
+        font-size: 19px;
+        font-weight: bold;
+
+        margin-bottom: 10px;
+    }
 
     #status {
-      min-height: 46px;
-      margin: 10px 0 30px;
-      padding: 14px 18px;
+        text-align: center;
 
-      border: 1px solid #24242a;
-      border-radius: 10px;
+        min-height: 30px;
 
-      background: #121216;
-      color: #9999a2;
+        margin-bottom: 30px;
 
-      font-size: 14px;
+        color: #8ebde8;
+
+        font-size: 14px;
     }
 
-    /* SECTIONS */
-
-    .section {
-      margin-top: 28px;
-    }
-
-    .section-title {
-      margin-bottom: 14px;
-
-      font-size: 19px;
-      font-weight: bold;
-
-      text-align: left;
-      color: #eeeeef;
-    }
-
-    .section-description {
-      margin-top: -7px;
-      margin-bottom: 15px;
-
-      text-align: left;
-
-      color: #777780;
-      font-size: 13px;
-    }
-
-    /* BUTTON GRID */
+    /* Buttons */
 
     .buttons {
-      display: grid;
+        display: grid;
 
-      grid-template-columns:
-        repeat(auto-fit, minmax(190px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
 
-      gap: 12px;
+        gap: 15px;
     }
 
-    /* BUTTONS */
-
     button {
-      width: 100%;
-      min-height: 58px;
+        min-height: 90px;
 
-      border: 1px solid #29292f;
-      border-radius: 9px;
+        border-radius: 12px;
 
-      background: #17171b;
-      color: #ffffff;
+        border: 1px solid #007cff;
 
-      font-size: 15px;
-      font-weight: bold;
+        background:
+            linear-gradient(
+                180deg,
+                rgba(10, 55, 110, 0.95),
+                rgba(3, 18, 40, 0.98)
+            );
 
-      cursor: pointer;
+        color: white;
 
-      transition:
-        background 0.15s ease,
-        border-color 0.15s ease,
-        transform 0.08s ease;
+        font-size: 20px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 0 10px rgba(0, 120, 255, 0.25),
+            inset 0 0 15px rgba(0, 100, 255, 0.12);
+
+        transition: 0.15s ease;
     }
 
     button:hover {
-      background: #202026;
-      border-color: #3a3a43;
+        background:
+            linear-gradient(
+                180deg,
+                #087fe5,
+                #06447e
+            );
+
+        border-color: #00aaff;
+
+        box-shadow:
+            0 0 20px rgba(0, 150, 255, 0.65);
+
+        transform: translateY(-2px);
     }
 
     button:active {
-      transform: scale(0.98);
+        transform: scale(0.97);
     }
 
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* SPECIAL BUTTON */
-
-    .primary {
-      background: #222229;
-      border-color: #45454e;
-    }
-
-    .primary:hover {
-      background: #292930;
-    }
-
-    /* DIVIDER */
-
-    .divider {
-      height: 1px;
-      margin: 35px 0;
-
-      background: #24242a;
-    }
-
-    /* FOOTER */
+    /* Footer */
 
     footer {
-      padding: 20px;
+        text-align: center;
 
-      color: #55555d;
-      font-size: 12px;
-      line-height: 1.6;
+        padding: 25px;
+
+        border-top: 1px solid rgba(0, 120, 255, 0.3);
+
+        color: #66819e;
+
+        font-size: 13px;
     }
 
-    /* MOBILE */
-
-    @media (max-width: 500px) {
-
-      header {
-        padding-top: 30px;
-      }
-
-      .logo {
-        font-size: 29px;
-      }
-
-      main {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-
-      .buttons {
-        grid-template-columns: 1fr;
-      }
-
+    .blue {
+        color: #4daaff;
     }
-  </style>
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+        .ps4 {
+            position: static;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        .buttons {
+            grid-template-columns: 1fr;
+        }
+
+        button {
+            min-height: 75px;
+        }
+    }
+</style>
 </head>
-
 
 <body>
 
-  <!-- HEADER -->
+<div class="wave one"></div>
+<div class="wave two"></div>
 
-  <header>
 
-    <div class="logo">
-      PS4 PAYLOAD HOST
+<header>
+
+    <div class="ps4">
+        PS4
     </div>
+
+    <h1>
+        PS4 11.00 Mod Menu Host
+    </h1>
 
     <div class="subtitle">
-      Homebrew &amp; Payload Menu
+        Black Ops III &nbsp; / &nbsp; Black Ops 4
     </div>
 
-    <div class="firmware">
-      Firmware 11.00
+    <div class="line"></div>
+
+</header>
+
+
+<main>
+
+    <div class="status-title">
+        Status
     </div>
-
-  </header>
-
-
-  <!-- MAIN -->
-
-  <main>
-
-    <!-- STATUS -->
 
     <div id="status">
-      Ready. Select a payload.
+        Ready — select a mod menu
     </div>
 
 
-    <!-- SYSTEM PAYLOADS -->
+    <div class="buttons">
 
-    <section class="section">
-
-      <div class="section-title">
-        System
-      </div>
-
-      <div class="section-description">
-        Homebrew and debugging payloads.
-      </div>
-
-      <div class="buttons">
-
-        <button
-          class="primary"
-          onclick="loadPayload('payloads/goldhen.bin')">
-
-          GoldHEN
-
+        <button onclick="loadPayload('payloads/bo3.bin')">
+            🎮<br>
+            BO3 Mod Menu
         </button>
 
 
-        <button
-          onclick="loadPayload('payloads/ps4debug.bin')">
-
-          PS4Debug
-
+        <button onclick="loadPayload('payloads/bo4.bin')">
+            🎮<br>
+            BO4 Mod Menu
         </button>
 
+    </div>
 
-        <button
-          onclick="loadPayload('payloads/ftp.bin')">
+</main>
 
-          FTP
 
-        </button>
+<footer>
 
-      </div>
+    <span class="blue">PS4 11.00</span>
+    &nbsp; • &nbsp;
+    Black Ops Mod Menu Host
 
-    </section>
+</footer>
 
 
-    <!-- BO3 -->
+<script>
 
-    <section class="section">
+async function loadPayload(file) {
 
-      <div class="section-title">
-        Call of Duty: Black Ops III
-      </div>
-
-      <div class="section-description">
-        BO3 single-player / homebrew payloads.
-      </div>
-
-      <div class="buttons">
-
-        <button
-          onclick="loadPayload('payloads/bo3.bin')">
-
-          BO3 Menu
-
-        </button>
-
-
-        <button
-          onclick="loadPayload('payloads/bo3-debug.bin')">
-
-          BO3 Debug
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- BO4 -->
-
-    <section class="section">
-
-      <div class="section-title">
-        Call of Duty: Black Ops 4
-      </div>
-
-      <div class="section-description">
-        BO4 single-player / homebrew payloads.
-      </div>
-
-      <div class="buttons">
-
-        <button
-          onclick="loadPayload('payloads/bo4.bin')">
-
-          BO4 Menu
-
-        </button>
-
-
-        <button
-          onclick="loadPayload('payloads/bo4-debug.bin')">
-
-          BO4 Debug
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <div class="divider"></div>
-
-
-    <!-- OTHER PAYLOADS -->
-
-    <section class="section">
-
-      <div class="section-title">
-        Other Payloads
-      </div>
-
-      <div class="section-description">
-        Additional payload files.
-      </div>
-
-      <div class="buttons">
-
-        <button
-          onclick="loadPayload('payloads/app2usb.bin')">
-
-          App2USB
-
-        </button>
-
-
-        <button
-          onclick="loadPayload('payloads/cacheinstall.bin')">
-
-          Cache Install
-
-        </button>
-
-
-        <button
-          onclick="loadPayload('payloads/dumper.bin')">
-
-          Dumper
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    PS4 11.00 Payload Host<br>
-
-    Payload files are loaded from the local
-    <strong>payloads/</strong> directory.
-
-  </footer>
-
-
-  <!-- JAVASCRIPT -->
-
-  <script>
-
-    /*
-     * ==========================================
-     * PAYLOAD LOADER
-     * ==========================================
-     *
-     * GitHub Pages can host the .bin files,
-     * but it cannot itself execute PS4 payloads.
-     *
-     * This function fetches the selected binary.
-     *
-     * The PS4 exploit/payload transport that
-     * actually sends the binary to the console
-     * needs to be supplied by the exploit host
-     * you are using.
-     */
-
-    async function loadPayload(file) {
-
-      const status =
+    const status =
         document.getElementById("status");
 
-
-      status.textContent =
+    status.textContent =
         "Loading " + file + "...";
 
-
-      try {
+    try {
 
         const response =
-          await fetch(file);
-
+            await fetch(file);
 
         if (!response.ok) {
-
-          throw new Error(
-            "Payload not found (" +
-            response.status +
-            ")"
-          );
-
+            throw new Error("Payload not found");
         }
 
-
-        const buffer =
-          await response.arrayBuffer();
-
-
-        const size =
-          buffer.byteLength;
-
+        const data =
+            await response.arrayBuffer();
 
         console.log(
-          "Payload:",
-          file
+            "Loaded:",
+            file,
+            data.byteLength,
+            "bytes"
         );
-
-
-        console.log(
-          "Size:",
-          size,
-          "bytes"
-        );
-
 
         status.textContent =
-          "Loaded " +
-          file +
-          " — " +
-          size +
-          " bytes.";
-
+            "Loaded " +
+            file +
+            " (" +
+            data.byteLength +
+            " bytes)";
 
         /*
-         * ======================================
-         * PAYLOAD TRANSPORT GOES HERE
-         * ======================================
+         * Connect your PS4 11.00 exploit's
+         * payload-sending function here.
          *
-         * The exploit host you use will normally
-         * provide a function for sending the
-         * ArrayBuffer to the PS4.
-         *
-         * For example, conceptually:
-         *
-         *     sendPayload(buffer);
-         *
-         * Do not add a random payload-sending
-         * function here; it must match the
-         * exploit implementation.
+         * GitHub Pages hosts the .bin files;
+         * it doesn't execute them by itself.
          */
 
-
-      } catch (error) {
+    } catch (error) {
 
         console.error(error);
 
-
         status.textContent =
-          "Error: " +
-          error.message;
-
-      }
-
+            "Error: " +
+            error.message;
     }
+}
 
-
-    /*
-     * ==========================================
-     * OPTIONAL: TEST PAYLOAD FILE
-     * ==========================================
-     *
-     * You can check whether a payload exists
-     * without attempting to send it.
-     */
-
-    async function checkPayload(file) {
-
-      try {
-
-        const response =
-          await fetch(file, {
-            method: "HEAD"
-          });
-
-
-        return response.ok;
-
-      } catch {
-
-        return false;
-
-      }
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
